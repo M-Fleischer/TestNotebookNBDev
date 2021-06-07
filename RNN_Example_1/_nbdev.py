@@ -6,7 +6,7 @@ index = {"data_iris": "00_random_forest.ipynb",
          "rf_model_class": "00_random_forest.ipynb",
          "y_pred_rf_class": "00_random_forest.ipynb"}
 
-modules = ["radom_forest_exp.py"]
+modules = ["radom_forest.py"]
 
 doc_url = "https://M-Fleischer.github.io/RNN_Example_1/"
 
