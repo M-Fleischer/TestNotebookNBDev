@@ -23,6 +23,7 @@ exclude:
  
 exclude: [vendor]
 
+encoding: UTF-8
 highlighter: rouge
 markdown: kramdown
 kramdown:
