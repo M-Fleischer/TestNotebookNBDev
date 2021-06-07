@@ -6,14 +6,13 @@ __all__ = ['data_iris', 'rf_model_class', 'y_pred_rf_class']
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-%matplotlib inline
 
 # Cell
 # Irisdaten für Klassifikation
 from sklearn.datasets import load_iris
-
-# Boston Hauspreise für Regression
-from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix
 
 # Cell
 data_iris = load_iris()
@@ -23,27 +22,26 @@ print(data_iris.DESCR)
 features_iris, target_iris = load_iris(return_X_y=True)
 
 # Cell
-from sklearn.model_selection import train_test_split
 
-X_train_iris, X_test_iris, y_train_iris, y_test_iris = train_test_split(features_iris,
-                                                           target_iris,
-                                                           test_size=0.2,
-                                                           stratify=target_iris,
-                                                           random_state = 42)
+X_train_iris, X_test_iris, y_train_iris, y_test_iris = train_test_split(
+    features_iris,
+    target_iris,
+    test_size=0.2,
+    stratify=target_iris,
+    random_state = 42)
 
 # Cell
-from sklearn.ensemble import RandomForestClassifier
 
-rf_model_class = RandomForestClassifier(n_estimators=200,
-                     max_depth=3,
-                     max_features=3,
-                     bootstrap=True,
-                     random_state = 42)
+rf_model_class = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=3,
+    max_features=3,
+    bootstrap=True,
+    random_state = 42)
 rf_model_class.fit(X_train_iris, y_train_iris)
 
 # Cell
-from sklearn.metrics import confusion_matrix
 
 y_pred_rf_class = rf_model_class.predict(X_test_iris)
 
-confusion_matrix(y_test_iris, y_pred_rf_class, labels=np.unique(y_test_iris))
+print(confusion_matrix(y_test_iris, y_pred_rf_class, labels=np.unique(y_test_iris)))
